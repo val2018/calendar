@@ -6,18 +6,18 @@ import Axis from './axis';
 import GraphBody from './graph_body';
 
 export default class Graph extends React.Component {
-    static defaultProps = { width: 800, height: 600 };
+    static defaultProps = { width: 620, height: 720 };
 
     render() {
 
         return (
             <svg width={this.props.width} height={this.props.height}>
-                <Axis
-                    x={20}
-                    y={this.props.height - 100}
-                    length={this.props.width}
-                    horizontal={true}
-                />
+                {/*<Axis*/}
+                    {/*x={20}*/}
+                    {/*y={this.props.height - 100}*/}
+                    {/*length={this.props.width}*/}
+                    {/*horizontal={true}*/}
+                {/*/>*/}
                 <Axis
                     x={20}
                     y={0}
