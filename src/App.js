@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+// import React from 'react';
+import Graph from './components/graph';
 
-// create a new component
-// class App extends Component {
-//   //App is a new class, Component is React.Component which we inherit from
-//   render() {
-//     const topicsList = ['HTML', 'Javascript', 'React'];
-//     // render function returns jx code
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <div>
-//           <ul>
-//             {topicsList.map( topic => <li>{topic}</li> )}
-//           </ul>
-//         </div>
-//
-//
-//       </div>
-//     );
-//   }
-// }
+export default class App extends React.Component {
+    render() {
+        return (
+            <Graph data={this.props.data} />
+        )
+    }
+}
+
 class Comment extends React.Component {
   render() {
       return(
@@ -184,4 +168,4 @@ class EventBox extends React.Component {
 }
 //export default App;
 //export default Comment;
-export default EventBox;
+// export default EventBox;
