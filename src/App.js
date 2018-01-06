@@ -32,9 +32,6 @@ class Comment extends React.Component {
   render() {
       return(
           <div className="comment">
-
-              <img src={this.props.avatarUrl} alt={`${this.props.author}'s picture`} />
-
               <p className="comment-header">{this.props.author}</p>
               <p className="comment-body">
                   {this.props.body}
@@ -46,6 +43,26 @@ class Comment extends React.Component {
       );
   }
 }
+
+class Event extends React.Component {
+    render() {
+        return(
+            <div className="event">
+                <p className="event-header">{this.props.start}</p>
+                <p className="event-body">
+                    {this.props.end}
+                </p>
+            </div>
+        );
+    }
+}
+class MyAppChild extends React.Component {
+    render() {
+        return <li>{this.props.label + " - " + this.props.value}</li>;
+    }
+}
+
+
 class CommentBox extends React.Component {
 
     constructor() {
@@ -84,19 +101,33 @@ class CommentBox extends React.Component {
     _getComments() {
 
         const commentList = [
-          { id: 1, author: 'Clu', body: 'Just say no to love!', avatarUrl: 'images/default-avatar.png' },
-          { id: 2, author: 'Anne Droid', body: 'I wanna know what love is...', avatarUrl: 'images/default-avatar.png' }
+          { id: 1, author: 'Clu', body: 'Just say no to love!' },
+          { id: 2, author: 'Anne Droid', body: 'I wanna know what love is...' }
         ];
 
         return commentList.map((comment) => {
           return (<Comment
               author={comment.author}
               body={comment.body}
-              avatarUrl={comment.avatarUrl}
               key={comment.id} />);
         });
     }
 
+    _getEvents() {
+
+        const eventList = {
+            event1: {start: 60, end: 120},  // an event from 10am to 11am
+            event2: {start: 100, end: 240}, // an event from 10:40am to 1pm
+            event3: {start: 700, end: 720}  // an event from 8:40pm to 9pm
+        }
+
+        return eventList.map((event) => {
+            return (<Event
+                start={event.start}
+                end={event.end}
+                key={event.id} />);
+        });
+    }
     _getCommentsTitle(commentCount) {
         if (commentCount === 0) {
           return 'No comments yet';
@@ -118,6 +149,39 @@ class CommentBox extends React.Component {
 
     }
 }
-// export default App;
-// export default Comment;
-export default CommentBox;
+class EventBox extends React.Component {
+
+    render() {
+
+        const comments = this._getEvents() || [];
+        let commentNodes;
+        commentNodes = <div className="comment-list">{comments}</div>
+        return(
+
+            <div className="comment-box">
+
+                <h3>Events</h3>
+
+
+                {commentNodes}
+            </div>
+        );
+    }
+    _getEvents() {
+
+        var json = {"event1":{"start":"60","end":"120"},"event2":{"start":"100","end":"240"},"event3":{"start":"700","end":"720"}};
+        var arr = [];
+        Object.keys(json).forEach(function(key) {
+            arr.push(json[key]);
+        });
+        return <ul>{arr.map(item => <MyAppChild key={item.start} label={item.start} value={item.end} />)}</ul>;
+
+    }
+
+
+
+
+}
+//export default App;
+//export default Comment;
+export default EventBox;
