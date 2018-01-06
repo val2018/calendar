@@ -47,44 +47,65 @@ class Comment extends React.Component {
   }
 }
 class CommentBox extends React.Component {
-  render() {
-    const comments = this._getComments() || [];
-    return(
-        <div className="comment-box">
-          <h3>Comments</h3>
-          {this._getPopularMessage(comments.length)}
-          <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
-          <div className="comment-list">
-              {comments}
-          </div>
-        </div>
-    );
-  }
-  _getComments() {
 
-      const commentList = [
+    constructor() {
+        super();
+
+        this.state = {
+            showComments: false
+        };
+    }
+    render() {
+        let buttonText = 'Show comments';
+
+        const comments = this._getComments() || [];
+        let commentNodes;
+        if (this.state.showComments) {
+            buttonText = 'Hide comments';
+            commentNodes = <div className="comment-list">{comments}</div>
+        }
+        return(
+
+            <div className="comment-box">
+                <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
+                <h3>Comments</h3>
+                {this._getPopularMessage(comments.length)}
+                <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
+                {commentNodes}
+            </div>
+        );
+    }
+    _handleClick() {
+        this.setState({
+            showComments: !this.state.showComments
+        });
+    }
+
+    _getComments() {
+
+        const commentList = [
           { id: 1, author: 'Clu', body: 'Just say no to love!', avatarUrl: 'images/default-avatar.png' },
           { id: 2, author: 'Anne Droid', body: 'I wanna know what love is...', avatarUrl: 'images/default-avatar.png' }
-      ];
+        ];
 
-      return commentList.map((comment) => {
+        return commentList.map((comment) => {
           return (<Comment
               author={comment.author}
               body={comment.body}
               avatarUrl={comment.avatarUrl}
               key={comment.id} />);
-      });
-  }
+        });
+    }
 
-  _getCommentsTitle(commentCount) {
-      if (commentCount === 0) {
+    _getCommentsTitle(commentCount) {
+        if (commentCount === 0) {
           return 'No comments yet';
-      } else if (commentCount === 1) {
+        } else if (commentCount === 1) {
           return '1 comment';
-      } else {
+        } else {
           return `${commentCount} comments`;
-      }
-  }
+        }
+    }
 
     _getPopularMessage(commentCount) {
         const POPULAR_COUNT = 1;
