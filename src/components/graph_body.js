@@ -2,6 +2,7 @@
  * Created by valerie on 1/6/18.
  */
 import React from 'react';
+import '../App.css';
 
 export default class GraphBody extends React.Component {
     static defaultProps = { multiplier: 20 };
@@ -51,12 +52,13 @@ export default class GraphBody extends React.Component {
         Object.keys(json).forEach(function(key) {
             arr.push(json[key]);
         });
-        return <ul>{arr.map(item => <MyAppChild key={item.start} label={item.start} value={item.end} />)}</ul>;
+        return <div id="MyRect">{arr.map(item => <MyAppChild key={item.start} label={item.start} value={item.end} />)}</div>;
 
     }
 }
 class MyAppChild extends React.Component {
     render() {
-        return <rect>{this.props.label + " - " + this.props.value}</rect>;
+        {/*return <rect>{this.props.label + " - " + this.props.value}</rect>;*/}
+        return <rect x={this.props.label} y={this.props.value} width={150} height={20}/>;
     }
 }
