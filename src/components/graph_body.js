@@ -30,6 +30,6 @@ export default class GraphBody extends React.Component {
 class Event extends React.Component {
 
     render() {
-       return <rect x={40} y={this.props.start} width={450} height={this.props.height} fill="none" stroke="black" strokeWidth="2"/>;
+       return <rect x={20} y={this.props.start} width={600} height={this.props.height} fill="none" stroke="black" strokeWidth="2"/>;
     }
 }
