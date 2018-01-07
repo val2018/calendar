@@ -8,13 +8,10 @@ export default class GraphBody extends React.Component {
     static defaultProps = { multiplier: 20 };
 
     render() {
-        const events = this._getEvents() || [];
         let eventNodes;
         eventNodes = this._getEvents();
         return(
-
-
-            <g className="event-box">
+            <g transform="translate(0,0)">
                 {eventNodes}
             </g>
         );
@@ -26,13 +23,13 @@ export default class GraphBody extends React.Component {
         Object.keys(json).forEach(function(key) {
             arr.push(json[key]);
         });
-        return <g>{arr.map(item => <Event key={item.start} label={item.start} value={item.end} />)}</g>;
+        return <g>{arr.map(item => <Event key={item.start} start={item.start} end={item.end} height={parseInt(item.end,10)-parseInt(item.start,10)}/>)}</g>;
 
     }
 }
 class Event extends React.Component {
-    render() {
 
-        return <rect x={this.props.label} y={this.props.value} width={150} height={20}/>;
+    render() {
+       return <rect x={40} y={this.props.start} width={450} height={this.props.height} fill="none" stroke="black" strokeWidth="2"/>;
     }
 }

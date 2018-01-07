@@ -7,15 +7,9 @@ export default class Axis extends React.Component {
     prepareCords() {
         let coords = {
             x1: this.props.x,
-            y1: this.props.y
-        }
-
-        if(this.props.horizontal) {
-            coords.x2 = coords.x1 + this.props.length;
-            coords.y2 = coords.y1;
-        } else {
-            coords.x2 = coords.x1;
-            coords.y2 = coords.y1 + this.props.length;
+            y1: this.props.y,
+            x2: this.props.x,
+            y2: this.props.length
         }
 
         return coords;
