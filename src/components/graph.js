@@ -12,12 +12,6 @@ export default class Graph extends React.Component {
 
         return (
             <svg width={this.props.width} height={this.props.height}>
-                {/*<Axis*/}
-                    {/*x={20}*/}
-                    {/*y={this.props.height - 100}*/}
-                    {/*length={this.props.width}*/}
-                    {/*horizontal={true}*/}
-                {/*/>*/}
                 <Axis
                     x={20}
                     y={0}
