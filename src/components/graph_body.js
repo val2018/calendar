@@ -31,17 +31,18 @@ export default class GraphBody extends React.Component {
         //
         //     />
         // )
-        const comments = this._getEvents() || [];
-        let commentNodes;
-        commentNodes = <div className="comment-list">{comments}</div>
+        const events = this._getEvents() || [];
+        let eventNodes;
+        eventNodes = <div className="event-list">{events}</div>
         return(
 
-            <div className="comment-box">
 
-                <h3>Events</h3>
+            <div className="event-box">
 
 
-                {commentNodes}
+
+
+                {eventNodes}
             </div>
         );
     }
@@ -52,13 +53,13 @@ export default class GraphBody extends React.Component {
         Object.keys(json).forEach(function(key) {
             arr.push(json[key]);
         });
-        return <div id="MyRect">{arr.map(item => <MyAppChild key={item.start} label={item.start} value={item.end} />)}</div>;
+        return <svg>{arr.map(item => <MyAppChild key={item.start} label={item.start} value={item.end} />)}</svg>;
 
     }
 }
 class MyAppChild extends React.Component {
     render() {
-        {/*return <rect>{this.props.label + " - " + this.props.value}</rect>;*/}
+
         return <rect x={this.props.label} y={this.props.value} width={150} height={20}/>;
     }
 }
